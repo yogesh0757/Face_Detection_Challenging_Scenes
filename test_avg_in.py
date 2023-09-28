@@ -3,18 +3,32 @@
 # Task: Test on widerface validation dataset
 ###########################################################################################################################################
 
+################### Inbuilt Import Supporting Library ###################
 from __future__ import print_function
 import os
 import argparse
 import torch
 import torch.backends.cudnn as cudnn
 import numpy as np
-from data import cfg_re50
-from layers.functions.prior_box import PriorBox
-from utils.nms.py_cpu_nms import py_cpu_nms
 import cv2
+
+####################### Import Relative Function ########################
+# Import Configuration Data
+from data import cfg_re50
+
+# Import Anchor Creater Function
+from layers.functions.prior_box import PriorBox
+
+# Import NMS (Non-maximum-Suppression) Function
+from utils.nms.py_cpu_nms import py_cpu_nms
+
+# Import Model Structure 
 from models.retinaface import RetinaFace
+
+# Import Decoder function of Bounding-Box and Landmark 
 from utils.box_utils import decode, decode_landm
+
+# Import Timer
 from utils.timer import Timer
 
 
