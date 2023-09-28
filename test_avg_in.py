@@ -23,7 +23,7 @@ from layers.functions.prior_box import PriorBox
 from utils.nms.py_cpu_nms import py_cpu_nms
 
 # Import Model Structure 
-from models.retinaface import RetinaFace
+from models.retinaface import MFRNet
 
 # Import Decoder function of Bounding-Box and Landmark 
 from utils.box_utils import decode, decode_landm
@@ -47,7 +47,6 @@ parser.add_argument('-s', '--save_image', action="store_true", default=False, he
 parser.add_argument('--vis_thres', default=0.5, type=float, help='visualization_threshold')
 args = parser.parse_args()
 
-https://github.com/biubug6/Pytorch_Retinaface
 def check_keys(model, pretrained_state_dict):
     ckpt_keys = set(pretrained_state_dict.keys())
     model_keys = set(model.state_dict().keys())
@@ -67,7 +66,6 @@ def remove_prefix(state_dict, prefix):
     f = lambda x: x.split(prefix, 1)[-1] if x.startswith(prefix) else x
     return {f(key): value for key, value in state_dict.items()}
 
-https://github.com/biubug6/Pytorch_Retinaface
 def load_model(model, pretrained_path, load_to_cpu):
     print('Loading pretrained model from {}'.format(pretrained_path))
     if load_to_cpu:
@@ -86,14 +84,20 @@ def load_model(model, pretrained_path, load_to_cpu):
 
 if __name__ == '__main__':
     torch.set_grad_enabled(False)
-    
     cfg = cfg_re50
-    # net and model
-    net = RetinaFace(cfg=cfg, phase = 'test')
+    
+    # Configure Face detector(MFRNet) model
+    net = MFRNet(cfg=cfg, phase = 'test')
+    
+    # Load Face detector(MFRNet) model
     net = load_model(net, args.trained_model, args.cpu)
     net.eval()
     cudnn.benchmark = True
+
+    # Configure device (if gpu available in system then select automatic gpu)
     device = torch.device("cpu" if args.cpu else "cuda")
+    
+    # Face detector model load in selected device
     net = net.to(device)
 
     # testing dataset
