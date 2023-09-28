@@ -54,15 +54,6 @@ Link: from [google cloud](https://drive.google.com/open?id=11UGV3nbVv1x9IC--_tK3
 ```Shell
 python test_widerface.py --trained_model weight_file --network mobile0.25 or resnet50
 ```
-I modified the code test_widerface.py by appending from line 95-101 as-
-
-test_dataset=[]
-    with open(testset_list,'r') as fr:
-      lines=fr.readlines()
-      for i in lines:
-        if i[0]=="#":
-          test_dataset.append(i[2:-1])
-    num_images=len(test_dataset)
 
 I used !python test_widerface.py --network resnet50 --cpu to generate the txt file.
 Then I downloaded the result in file.zip which contains the test result of validaion dataset in txt format.
