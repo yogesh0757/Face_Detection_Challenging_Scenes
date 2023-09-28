@@ -5,8 +5,8 @@ A [PyTorch](https://pytorch.org/) implementation of [MFRNet: Face_Detection_Chal
 ## WiderFace Val Performance in single scale When using MFRNet as backbone net.
 | Style | easy | medium | hard |
 |:-|:-:|:-:|:-:|
-| Pytorch (1200 to upto 1600) | 94.82 % | 93.84% | 89.60% |
-| Pytorch (original image scale) | 95.48% | 94.04% | 84.43% |
+| Pytorch (1200 to upto 1600) | 94.85 % | 93.50% | 89.30% |
+| Pytorch (original image scale) | 95.48% | 94.04% | 85.43% |
 
 ## FDDB Performance.
 | FDDB(pytorch) | performance |
