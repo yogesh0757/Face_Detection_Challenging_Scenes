@@ -100,10 +100,12 @@ if __name__ == '__main__':
     # Face detector model load in selected device
     net = net.to(device)
 
-    # testing dataset
+    ######## Collect WIDER FACE validation dataset for testing  #####################
+    # Access list of image file name of dataset 
     testset_folder = args.dataset_folder
     testset_list = args.dataset_folder[:-7] + "wider_val.txt"
 
+    # Create path list of image file name of dataset
     test_dataset=[]
     with open(testset_list,'r') as fr:
       lines=fr.readlines()
@@ -111,8 +113,6 @@ if __name__ == '__main__':
         if i[0]=="/":
           test_dataset.append(i[1:-1])
     num_images=len(test_dataset)
-
-
 
     _t = {'forward_pass': Timer(), 'misc': Timer()}
     for i, img_name in enumerate(test_dataset):
