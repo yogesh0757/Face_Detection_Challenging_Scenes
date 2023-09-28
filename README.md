@@ -1,4 +1,4 @@
-# RetinaFace in PyTorch
+# Face_Detection_Challenging_Scenes in PyTorch
 
 A [PyTorch](https://pytorch.org/) implementation of [MFRNet: Face_Detection_Challenging_Scenes](https://arxiv.org/abs/1905.00641). Model size only 50M, We achieve better result with low computation FLOPS.
 
