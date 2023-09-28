@@ -22,7 +22,7 @@ A [PyTorch](https://pytorch.org/) implementation of [MFRNet: Face_Detection_Chal
 
 ## Installation
 ##### Clone and install
-1. git clone https://github.com/aishifugi/Pytorch_Retinaface.git
+1. git clone [https://github.com/aishifugi/Pytorch_Retinaface.git](https://github.com/yogesh0757/Face_Detection_Challenging_Scenes.git)
 
 2. Pytorch version 1.1.0+ and torchvision 0.3.0+ are needed.
 
