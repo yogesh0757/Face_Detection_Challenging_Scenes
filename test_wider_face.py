@@ -114,8 +114,13 @@ if __name__ == '__main__':
           test_dataset.append(i[1:-1])
     num_images=len(test_dataset)
 
+    # forward pass timer and miscellaneous timer define
     _t = {'forward_pass': Timer(), 'misc': Timer()}
+    
+    # Model Testing Loop start using path list of image
     for i, img_name in enumerate(test_dataset):
+        
+        # access i_th image file path
         image_path = testset_folder + img_name
         img_raw = cv2.imread(image_path, cv2.IMREAD_COLOR)
         img = np.float32(img_raw)
