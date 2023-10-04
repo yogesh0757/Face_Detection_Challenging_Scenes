@@ -120,14 +120,20 @@ if __name__ == '__main__':
     # Model Testing Loop start using path list of image
     for i, img_name in enumerate(test_dataset):
         
-        # access i_th image file path
+        ## Access i_th image file path
         image_path = testset_folder + img_name
+        
+        ## Read i_th image file
         img_raw = cv2.imread(image_path, cv2.IMREAD_COLOR)
+        
+        ## Raw image convert to numpy array
         img = np.float32(img_raw)
 
-        # testing scale
+        ## Set testing scale
         target_size = 1200
         max_size = 1600
+
+        ####### Resize image (One side max 1200 and other size upto 1600 and acpact ratio same) ####
         im_shape = img.shape
         im_size_min = np.min(im_shape[0:2])
         im_size_max = np.max(im_shape[0:2])
@@ -137,12 +143,18 @@ if __name__ == '__main__':
             resize = float(max_size) / float(im_size_max)
         if args.origin_size:
             resize = 1
-
         if resize != 1:
             img = cv2.resize(img, None, None, fx=resize, fy=resize, interpolation=cv2.INTER_LINEAR)
+        #############################################################################################
+        
         im_height, im_width, _ = img.shape
+        
+        ## Scale size convert in Tensor form of Resize image
         scale = torch.Tensor([img.shape[1], img.shape[0], img.shape[1], img.shape[0]])
+
+        ## Normalized value reduse in RGB clannel of resize image (input image)
         img -= (104, 117, 123)
+        ## Transpose input tensor (image)
         img = img.transpose(2, 0, 1)
         img = torch.from_numpy(img).unsqueeze(0)
         img = img.to(device)
