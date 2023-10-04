@@ -154,10 +154,17 @@ if __name__ == '__main__':
 
         ## Normalized value reduse in RGB clannel of resize image (input image)
         img -= (104, 117, 123)
+        
         ## Transpose input tensor (image)
         img = img.transpose(2, 0, 1)
+
+        ## input image tensor size (channel, height, width) convert to (batch_size, channel, height, width) size tensor
         img = torch.from_numpy(img).unsqueeze(0)
+        
+        ## Upload input tensor on selected device
         img = img.to(device)
+        
+        ## Upload input tensor scale on selected device
         scale = scale.to(device)
         
 
